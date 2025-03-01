@@ -1,0 +1,38 @@
+class Banco:
+    def __init__(self):
+        self.saldo = 0.0
+        self.extrato = []
+
+    def depositar(self, valor):
+        if valor > 0:
+            self.saldo += valor
+            self.extrato.append(f"Depósito: +R$ {valor:.2f}")
+            print(f"Depósito de R$ {valor:.2f} realizado com sucesso!")
+        else:
+            print("Valor inválido para depósito.")
+
+    def sacar(self, valor):
+        if 0 < valor <= self.saldo:
+            self.saldo -= valor
+            self.extrato.append(f"Saque: -R$ {valor:.2f}")
+            print(f"Saque de R$ {valor:.2f} realizado com sucesso!")
+        elif valor > self.saldo:
+            print("Saldo insuficiente para saque.")
+        else:
+            print("Valor inválido para saque.")
+
+    def mostrar_extrato(self):
+        print("\nExtrato da Conta:")
+        for movimento in self.extrato:
+            print(movimento)
+        print(f"Saldo atual: R$ {self.saldo:.2f}")
+
+# Exemplo de uso
+def main():
+    conta = Banco()
+    conta.depositar(1000)
+    conta.sacar(200)
+    conta.mostrar_extrato()
+
+if __name__ == "__main__":
+    main()
